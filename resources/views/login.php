@@ -5,6 +5,10 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" ref="{{ asset(css/bootstrap.css") }}" >
+    <link rel="stylesheet" type="text/css" ref="{{ asset(css/bootstrap.min.css") }}" >
 </head>
 <body>
 
