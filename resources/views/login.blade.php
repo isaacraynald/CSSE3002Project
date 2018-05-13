@@ -54,17 +54,5 @@
 
 </div>
 
-<div class="footer">
-    <div style="background-color:#1a1a1a;padding-top:20px;padding-bottom:50px;">
-        <img src="images/FOOTER.png" width="1140" height="152" alt="Footer" usemap="#footer" class="logo">
-
-        <map name="footer">
-            <area shape="rect" coords="523,133,618,152" href="disclaimer.html" alt="Disclaimer">
-        </map>
-    </div>
-
-    <div style="height:10px;background-color:#FCCF2F;"></div>
-</div>
-
 </body>
 </html>

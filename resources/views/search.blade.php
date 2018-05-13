@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>UQ&A - Dashboard</title>
+    <title>UQ&A - Search Course</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -32,40 +32,18 @@
 
 <div style="padding-top: 10vh; padding-left: 13vw; padding-right: 13vw;">
 
-    <h1>UQ&A</h1>
+    <h1>Search Course</h1>
 
     <div class="card">
-        <div class="row">
-
-            <div class="col-sm-6 text-center">
-                <div class="card-body">
-
-                    <br><br><br>
-                    <a class="portal" href="search.blade.php">
-                        <i class="icofont icofont-student-alt icofont-5x"></i>
-                        <br><br>
-                        <h3>Student</h3>
-                    </a>
-                    <br><br><br>
-
-                </div>
+        <form class="form-group row">
+            <div class="col-sm-11">
+                <input class="form-control form-control-lg no-border" type="search" placeholder="e.g. INFS3202" aria-label="Search">
             </div>
 
-            <div class="col-sm-6 text-center">
-                <div class="card-body">
-
-                    <br><br><br>
-                    <a class="portal" href="search.html">
-                        <i class="icofont icofont-teacher icofont-5x"></i>
-                        <br><br>
-                        <h3>Tutor</h3>
-                    </a>
-                    <br><br><br>
-
-                </div>
+            <div class="col-sm-1">
+                <button class="btn btn-link btn-lg" type="submit"><i class="icofont icofont-search-alt-2"></i></button>
             </div>
-
-        </div>
+        </form>
     </div>
 
 </div>
