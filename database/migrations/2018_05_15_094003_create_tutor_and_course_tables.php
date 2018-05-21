@@ -26,9 +26,21 @@ class CreateTutorAndCourseTables extends Migration
             $table->increments('id');
             $table->string('course_id');
             $table->string('course_name');
-            $table->string('semester');
-            $table->year('year');
+            $table->integer('semester_id');
+            $table->foreign('semester_id')->references('id')->on('semester')->onDelete('cascade');
         });
+         Schema::create('request_tutor', function(Blueprint $table){
+             $table->increments('id');
+             $table->integer('user_id');
+             $table->integer('course_id');
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+         });
+        Schema::create('semester', function(Blueprint $table){
+             $table->increments('id');
+             $table->integer('semester');
+             $table->year('year');
+             $table->string('status')->default('active');
     }
 
     /**
