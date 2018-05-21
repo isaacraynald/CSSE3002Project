@@ -1,0 +1,28 @@
+.makedefault{
+  color:black;
+  background-color:white;
+  border-style:solid;
+  border-width:2px;
+  border-color:#dfdfdf;
+  border-radius:5px;
+}
+
+.makedefault:hover, .makedefault:active {
+  color:white;
+  background-color:#593196;
+  border-radius:5px;
+}
+
+
+.makedefault_question {
+  color:black;
+  background-color:white;
+  border-style:solid;
+  border-color:#dfdfdf;
+}
+
+.makedefault_question:hover {
+  color:black;
+  background-color:#f6f6f6;
+  border-radius:10px;
+}
