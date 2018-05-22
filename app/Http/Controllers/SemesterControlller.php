@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Tutor;
+use App\Semester;
 use Illuminate\Http\Request;
 
-class TutorControlller extends Controller
+class SemesterControlller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $courses = DB::table('tutors')
-        ->join('courses', 'tutors.course_id', '=', 'courses.id')
-        ->join('semesters', 'courses.semester_id', '=', 'semesters.id')
-        ->where('id', Auth::id())
-        ->select('courses.course_id, courses.course_name, semesters.semester, semester.year')
-        ->orderBy('semester.year', 'asc')
-        ->get();
+        //
     }
 
     /**
@@ -53,10 +41,10 @@ class TutorControlller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tutor  $tutor
+     * @param  \App\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function show(Tutor $tutor)
+    public function show(Semester $semester)
     {
         //
     }
@@ -64,10 +52,10 @@ class TutorControlller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tutor  $tutor
+     * @param  \App\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tutor $tutor)
+    public function edit(Semester $semester)
     {
         //
     }
@@ -76,10 +64,10 @@ class TutorControlller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tutor  $tutor
+     * @param  \App\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tutor $tutor)
+    public function update(Request $request, Semester $semester)
     {
         //
     }
@@ -87,10 +75,10 @@ class TutorControlller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tutor  $tutor
+     * @param  \App\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tutor $tutor)
+    public function destroy(Semester $semester)
     {
         //
     }
