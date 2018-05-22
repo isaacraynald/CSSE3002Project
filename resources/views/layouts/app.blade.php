@@ -12,6 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,6 +22,8 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/icofont.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
 </head>
 <body>
     <div id="app">
@@ -48,7 +52,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()-> first_name }} {{ Auth::user()-> last_name }} <span class="caret"></span>
-                                </a>
+                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"

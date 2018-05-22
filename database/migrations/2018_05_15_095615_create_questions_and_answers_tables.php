@@ -15,22 +15,22 @@ class CreateQuestionsAndAnswersTables extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('question')
-            $table->integer('course_id');
+            $table->integer('user_id')->unsigned();
+            $table->string('question');
+            $table->integer('course_id')->unsigned();
             $table->boolean('answered')->default(false);
             $table->timestamps();
-            $table->foreign('user_id')->references('student_number')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
         });
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tutor_id');
-            $table->integer('question_id')
+            $table->integer('tutor_id')->unsigned();
+            $table->integer('question_id')->unsigned();
             $table->string('answer');
             $table->integer('course_id');
             $table->timestamps();
-            $table->foreign('tutor_id')->references('tutor_sn')->on('tutors');
+            $table->foreign('tutor_id')->references('id')->on('tutors');
             $table->foreign('question_id')->references('id')->on('questions');
         });
     }
