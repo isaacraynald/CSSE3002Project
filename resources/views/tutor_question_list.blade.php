@@ -3,14 +3,31 @@
 @section('content')
 
 <div style="padding-top: 10vh; padding-left: 13vw; padding-right: 13vw;">
-
-  <h1>DECO1234</h1>
+  @foreach($courseName as $name)
+  <h1>{{$name->course_id}}</h1>
+  @endforeach
 
   <div class="card">
-
+    @if(count($questions)>0)
     <div class="card-body">
       <ul class="list-group list-group-flush">
+        @foreach($questions as $question)
         <li class="list-group-item list-group-item makedefault_question">
+          <p>{{$question->question}}</p>
+          <span class="text-muted">From {{$question->first_name}} {{$question->last_name}}</span>
+          <div class="container text-right">
+            <a href="#" class="btn btn-primary btn-lg" role="button">
+              <i class="icofont icofont-pencil"></i>Answer
+            </a>
+            <button type="button" class="btn btn-primary btn-lg">
+              <i class="icofont icofont-bin"></i>Delete
+            </button>
+          </div>
+        </li>
+        @endforeach
+
+
+        <!--li class="list-group-item list-group-item makedefault_question">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -26,26 +43,7 @@
               <i class="icofont icofont-bin"></i>Delete
             </button>
           </div>
-        </li>
-
-
-        <li class="list-group-item list-group-item makedefault_question">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-             Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-              eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <span class="text-muted">From Issac Raynald</span>
-          <div class="container text-right">
-            <a href="#" class="btn btn-primary btn-lg" role="button">
-              <i class="icofont icofont-pencil"></i>Answer
-            </a>
-            <button type="button" class="btn btn-primary btn-lg">
-              <i class="icofont icofont-bin"></i>Delete
-            </button>
-          </div>
-        </li>
+        </li-->
 
 
 
@@ -126,6 +124,19 @@
     </div> -->
 
     </div>
+    @else
+    <div class="row">
+      <div class="card-body">
+        <div class="container text-center">
+          <i class="icofont icofont-ui-folder" style="font-size:350px;"></i>
+          <p style="font-size:45px;"><strong>No Question Found</strong>
+          </p>
+          <p style="font-size:25px">Time to kick back and releax before someone asks something.
+          </p>
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
 </div>
 

@@ -16,6 +16,15 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/search', 'CourseController@index');
+
+Route::get('/tutor', 'TutorController@index');
+
+Route::get('/tutor/{id}', 'TutorController@showQuestion');
+
+
 Route::get('/tutor_answer', function(){
 	return view('tutor_answer');
 });

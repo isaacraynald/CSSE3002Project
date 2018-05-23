@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Tutor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class TutorControlller extends Controller
+class TutorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,12 +23,35 @@ class TutorControlller extends Controller
     public function index()
     {
         $courses = DB::table('tutors')
-        ->join('courses', 'tutors.course_id', '=', 'courses.id')
+        ->select('courses.id', 'courses.course_id', 'courses.course_name', 'courses.semester_id')
+        ->where('tutors.tutor_id', Auth::id())
+        ->join('courses', 'courses.id','=', 'tutors.course_id')
         ->join('semesters', 'courses.semester_id', '=', 'semesters.id')
-        ->where('id', Auth::id())
-        ->select('courses.course_id, courses.course_name, semesters.semester, semester.year')
-        ->orderBy('semester.year', 'asc')
         ->get();
+
+        $semesters = DB::table('semesters')
+        ->select('id', 'year', 'semester')
+        ->orderBy('semesters.id', 'desc')
+        ->get();
+
+
+        return view('tutor_course_list')->with('courses', $courses)->with('semesters', $semesters);
+
+    }
+
+    public function showQuestion($id){
+        $questions = DB::table('questions')
+        ->select('questions.question', 'questions.user_id', 'users.first_name', 'users.last_name')
+        ->join('users', 'questions.user_id','=', 'users.id')
+        ->where('questions.course_id', $id)
+        ->get();
+
+        $courseName=DB::table('courses')
+        ->select('course_id')
+        ->where('courses.id', $id)
+        ->get();
+
+        return view('tutor_question_list')->with('questions', $questions)->with('courseName', $courseName);
     }
 
     /**
