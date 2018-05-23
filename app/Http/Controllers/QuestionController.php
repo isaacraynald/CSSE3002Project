@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use App\Question;
 use Illuminate\Http\Request;
 
-class CourseControlller extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CourseControlller extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -26,6 +26,7 @@ class CourseControlller extends Controller
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -41,10 +42,10 @@ class CourseControlller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Question $question)
     {
         //
     }
@@ -52,10 +53,10 @@ class CourseControlller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Question $question)
     {
         //
     }
@@ -64,10 +65,10 @@ class CourseControlller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Question $question)
     {
         //
     }
@@ -75,10 +76,10 @@ class CourseControlller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Question $question)
     {
         //
     }

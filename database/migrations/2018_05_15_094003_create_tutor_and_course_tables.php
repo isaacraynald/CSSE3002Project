@@ -26,7 +26,7 @@ class CreateTutorAndCourseTables extends Migration
             $table->integer('semester_id')->unsigned();
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
         });
-         Schema::create('tutors', function (Blueprint $table) {
+        Schema::create('tutors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tutor_id')->unsigned();
             $table->integer('course_id')->unsigned();

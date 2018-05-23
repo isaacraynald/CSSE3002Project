@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
-class QuestionControlller extends Controller
+class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class QuestionControlller extends Controller
      */
     public function index()
     {
-        //
+        return view('search');
     }
 
     /**
@@ -41,10 +47,10 @@ class QuestionControlller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Course $course)
     {
         //
     }
@@ -52,10 +58,10 @@ class QuestionControlller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Course $course)
     {
         //
     }
@@ -64,10 +70,10 @@ class QuestionControlller extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, Course $course)
     {
         //
     }
@@ -75,10 +81,10 @@ class QuestionControlller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question  $question
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy(Course $course)
     {
         //
     }

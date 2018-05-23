@@ -12,7 +12,15 @@ class Tutor extends Model
     //primary key
     protected $primarykey = 'id';
 
-    public function questions(){
+    public function user(){
+    	return $this->belongsTo('App\User');
+    }
+
+    public function answers(){
     	return $this->hasMany('App\Answer');
+    }
+
+    public function course(){
+    	return $this->hasMany('App\Course');
     }
 }
