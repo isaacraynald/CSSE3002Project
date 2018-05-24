@@ -15,9 +15,13 @@ class Question extends Model
      * @var array
      */
     protected $table = 'questions';
+
+    public $primaryKey = 'id';
+
+    public $timestamps = true;
+
     protected $fillable = ['question'];
         
-    ];
 
     /**
      * The attributes that should be hidden for arrays.
