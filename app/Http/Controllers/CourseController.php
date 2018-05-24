@@ -23,6 +23,20 @@ class CourseController extends Controller
         return view('search');
     }
 
+    public function searchCourses(Request $request)
+    {
+        $data = $request->term;
+        $result = Course::select('course_id')->where('course_id', 'LIKE','%'.$data.'%')->get();
+        if (count($result)==0){
+             $searchResult[] = 'No Course Found';
+        } else{
+            foreach ($result as $key => $value) {
+                $searchResult[] = $value->course_id;
+            }
+        }
+        return $searchResult;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -23,13 +23,13 @@ class CreateTutorAndCourseTables extends Migration
             $table->increments('id');
             $table->string('course_id');
             $table->string('course_name');
-            $table->integer('semester_id')->unsigned();
-            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
         });
         Schema::create('tutors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tutor_id')->unsigned();
             $table->integer('course_id')->unsigned();
+            $table->integer('semester_id')->unsigned();
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
             $table->foreign('tutor_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         }); 

@@ -12,6 +12,8 @@ class Course extends Model
     //primary key
     protected $primarykey = 'id';
 
+    protected $fillable = ['result'];
+
     public function tutor(){
     	return $this->belongsTo('App\Tutor');
     }

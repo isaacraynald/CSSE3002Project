@@ -4,6 +4,7 @@
 
 <div style="padding-top: 10vh; padding-left: 13vw; padding-right: 13vw;">
 
+  <a href="{{ url('/') }}">‹ Return to Main Page</a>
   <h1>Course List</h1>
 
   @if(count($semesters)>1)
@@ -24,7 +25,13 @@
         <div class="list-group">
           @foreach($courses as $course)
             @if($semester->id == $course->semester_id)
-          <a href="{{ url('tutor/'.$course->id)}}" class="list-group-item list-group-item-action d-flex align-items-center makedefault">{{$course->course_id}}<span class="badge badge-primary badge-danger" style="margin-left:15px;">14</span></a>
+            <?php $count = 0;?>
+            @foreach($questions as $question)
+            @if($course->semester_id == $question->semester_id && $course->id == $question->course_id)
+            <?php $count = $count + 1;?>
+            @endif
+            @endforeach
+          <a href="{{ route('questionList',['id'=>$course->id,'semester'=>$semester->id])}}" class="list-group-item list-group-item-action d-flex align-items-center makedefault">{{$course->course_id}}<span class="badge badge-primary badge-danger" style="margin-left:15px;">{{$count}}</span></a>
             @endif
           @endforeach
         </div>
@@ -32,38 +39,6 @@
     </div>
   </div>
    @endforeach
-  <!--div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link btn-primary btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Semester2, 2017
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        <a href="#" class="list-group-item list-group-item-action makedefault">DECO1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">5</span></a>
-        <a href="#" class="list-group-item list-group-item-action makedefault">INFS1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">2</span></a>
-        <a href="#" class="list-group-item list-group-item-action makedefault">CSSE1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">1</span></a>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link btn-primary btn-lg collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Semester1, 2017
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        <a href="#" class="list-group-item list-group-item-action makedefault">DECO1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">0</span></a>
-        <a href="#" class="list-group-item list-group-item-action makedefault">INFS1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">0</span></a>
-        <a href="#" class="list-group-item list-group-item-action makedefault">CSSE1234<span class="badge badge-primary badge-danger" style="margin-left:15px;">0</span></a>
-      </div>
-    </div>
-  </div-->
 </div>
 
 
