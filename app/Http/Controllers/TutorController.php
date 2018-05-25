@@ -51,6 +51,7 @@ class TutorController extends Controller
         ->join('users', 'questions.user_id','=', 'users.id')
         ->where('questions.course_id', $id)
         ->where('questions.semester_id', $semester)
+        ->orderBy('questions.id', 'desc')
         ->get();
 
         $courseName=Course::find($id);

@@ -55,7 +55,7 @@ class QuestionController extends Controller
         $question->course_id = $course;
         $question->semester_id = $semester;
         $question->save();
-        return back()->with('message', 'success');
+        return back()->with('message', 'Your question have been successfully submitted');
     }
 
     /**
@@ -74,12 +74,13 @@ class QuestionController extends Controller
         ->first();
         if(count($course2)>0){
         $question= DB::table('answers')
-        ->select('answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
+        ->select('questions.id','answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
         ->join('questions', 'questions.id','=', 'answers.question_id')
         ->join('courses', 'courses.id','=', 'questions.course_id')
         ->join('users', 'users.id','=','questions.user_id')
         ->join('tutors', 'tutors.id','=','answers.tutor_id')
         ->where('courses.course_id','LIKE','%'.$course.'%')
+        ->orderBy('questions.id', 'desc')
         ->get();
 
         $tutor=DB::table('tutors')
@@ -115,7 +116,7 @@ class QuestionController extends Controller
                 $query = $request->get('search');
                 if($query != ''){
                     $data= DB::table('answers')
-                    ->select('answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
+                    ->select('questions.id','answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
                     ->join('questions', 'questions.id','=', 'answers.question_id')
                     ->join('courses', 'courses.id','=', 'questions.course_id')
                     ->join('users', 'users.id','=','questions.user_id')
@@ -123,18 +124,10 @@ class QuestionController extends Controller
                     ->where('questions.question','LIKE','%'.$query.'%')
                     ->orWhere('answers.answer','LIKE','%'.$query.'%')
                     ->where('courses.course_id','LIKE','%'.$course.'%')
+                    ->orderBy('questions.id', 'desc')
                     ->get();
                 }
                 else{
-                    $data= DB::table('answers')
-                    ->select('answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
-                    ->join('questions', 'questions.id','=', 'answers.question_id')
-                    ->join('courses', 'courses.id','=', 'questions.course_id')
-                    ->join('users', 'users.id','=','questions.user_id')
-                    ->join('tutors', 'tutors.id','=','answers.tutor_id')
-                    ->where('courses.course_id','LIKE','%'.$course.'%')
-                    ->where('questions.semester_id', $semester)
-                    ->get();
                 }
                 $total_row = $data->count();
                 $tutors=DB::table('tutors')
