@@ -45,6 +45,11 @@
                 // }
             });
 
+            $('#list-semester a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('active')
+            });
+
             // Close notification
             $('i.icofont-close-line, .btn-secondary').on('click', function () {
                 $('.notification').toggle();
@@ -57,10 +62,6 @@
             $('.thanks').hide();
 
             // Toggle semester tabs
-            $('#list-semester a').on('click', function (e) {
-                e.preventDefault();
-                $(this).tab('active')
-            });
 
             // Toggle question and confirmation boxes
             //$('#ask button, .thanks button').on('click', function (e) {
