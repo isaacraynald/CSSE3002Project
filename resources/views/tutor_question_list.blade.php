@@ -27,6 +27,18 @@
             @else
             <a href="{{ route('edit', ['id'=>$question->id])}}" class="btn btn-primary btn-lg" role="button">
               <i class="icofont icofont-pencil"></i>Edit
+            </a>
+            @endif
+            <form class = 'btn' method="POST" action="{{route('deleteQuestion' , ['id'=>$question->id])}}">
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <button class = 'btn btn-primary btn-lg' type="submit">
+              <i class="icofont icofont-bin"></i>Delete
+            </button>
+          </form>
+          </div>
+        </li>
+        @endforeach
 
       </ul>
 
