@@ -90,9 +90,10 @@ class QuestionController extends Controller
         ->get();
 
         $semesters = DB::table('semesters')
-        ->select('id', 'year', 'semester')
+        ->select('id', 'year', 'semester', 'status')
         ->orderBy('semesters.id', 'desc')
         ->get();
+
 
         $courseName = $course2->course_id;
 
@@ -104,6 +105,68 @@ class QuestionController extends Controller
         else{
             return back()->with('message', 'fail');
         }
+    }
+
+    public function search(Request $request, $course)
+    {
+        if($request->ajax())
+            {
+                $output = '';
+                $query = $request->get('search');
+                if($query != ''){
+                    $data= DB::table('answers')
+                    ->select('answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
+                    ->join('questions', 'questions.id','=', 'answers.question_id')
+                    ->join('courses', 'courses.id','=', 'questions.course_id')
+                    ->join('users', 'users.id','=','questions.user_id')
+                    ->join('tutors', 'tutors.id','=','answers.tutor_id')
+                    ->where('questions.question','LIKE','%'.$query.'%')
+                    ->orWhere('answers.answer','LIKE','%'.$query.'%')
+                    ->where('courses.course_id','LIKE','%'.$course.'%')
+                    ->get();
+                }
+                else{
+                    $data= DB::table('answers')
+                    ->select('answers.answer', 'questions.question','users.first_name as user_first_name','users.last_name as user_last_name','answers.tutor_id','questions.semester_id', 'courses.course_id')
+                    ->join('questions', 'questions.id','=', 'answers.question_id')
+                    ->join('courses', 'courses.id','=', 'questions.course_id')
+                    ->join('users', 'users.id','=','questions.user_id')
+                    ->join('tutors', 'tutors.id','=','answers.tutor_id')
+                    ->where('courses.course_id','LIKE','%'.$course.'%')
+                    ->where('questions.semester_id', $semester)
+                    ->get();
+                }
+                $total_row = $data->count();
+                $tutors=DB::table('tutors')
+                ->select('tutors.id', 'users.first_name', 'users.last_name','tutors.semester_id')
+                ->join('users', 'tutors.tutor_id','=', 'users.id')
+                ->join('courses', 'courses.id', '=', 'tutors.course_id')
+                ->where('courses.course_id','LIKE','%'.$course.'%')
+                ->get();
+                if($total_row > 0)
+                {
+                    foreach($data as $row)
+                    {
+                        foreach($tutors as $tutor){
+                            if($row->tutor_id ==$tutor->id){
+                                $output .= '<li class="list-group-item">
+                                    <br>
+                                    <p><b>'.$row->user_first_name.' '.$row->user_last_name.': '.$row->question.
+                                    '</b></p>
+
+                                    <p>'.$tutor->first_name.' '.$tutor->last_name.': '.$row->answer.
+                                    '</p>
+                                </li>';
+                            }
+                        }
+                    }        
+                }
+                else
+                {
+                }
+                $data = array('table_data'  => $output);    
+                echo json_encode($data);
+            }
     }
 
     /**
