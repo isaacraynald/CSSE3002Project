@@ -103,7 +103,11 @@ class QuestionController extends Controller
         return view('course')->with('questions', $question)->with('tutors', $tutor)->with('semesters', $semesters)->with('courses', $courseName)->with('courseId', $courseId);
         }
         else{
+<<<<<<< HEAD
             return back()->with('message', 'Fail to find courses');
+=======
+            return back()->with('message', 'fail');
+>>>>>>> 7384801d2f27ef465707e89bb2f0f368757118d7
         }
     }
 

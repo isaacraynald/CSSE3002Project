@@ -117,7 +117,11 @@ class AnswerController extends Controller
         $answer->answer = $request->input('answer');
         $answer->save();
 
+<<<<<<< HEAD
         return redirect()->route('questionList',[$course, $semester])->with('message', 'Answer has been successfully updated');
+=======
+        return redirect()->route('questionList',[$course, $semester])->with('message', 'success');
+>>>>>>> 7384801d2f27ef465707e89bb2f0f368757118d7
     }
 
     /**

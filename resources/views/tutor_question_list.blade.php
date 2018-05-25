@@ -7,7 +7,10 @@
   <h1>{{$courseName->course_id}}</h1>
   @if (session('message'))
     <div class="alert alert-success">
+<<<<<<< HEAD
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+=======
+>>>>>>> 7384801d2f27ef465707e89bb2f0f368757118d7
         {{ session('message') }}
     </div>
   @endif

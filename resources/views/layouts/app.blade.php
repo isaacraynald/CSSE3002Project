@@ -73,7 +73,6 @@
             $('i.icofont-close-line, .btn-secondary').on('click', function () {
                 $(this).parent('.notification').hide();
             });
-        });
         </script>
 
 </head>
