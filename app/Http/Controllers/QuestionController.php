@@ -55,7 +55,7 @@ class QuestionController extends Controller
         $question->course_id = $course;
         $question->semester_id = $semester;
         $question->save();
-        return back()->with('message', 'success');
+        return back()->with('message', 'Question has been successfully submitted');
     }
 
     /**
@@ -103,7 +103,7 @@ class QuestionController extends Controller
         return view('course')->with('questions', $question)->with('tutors', $tutor)->with('semesters', $semesters)->with('courses', $courseName)->with('courseId', $courseId);
         }
         else{
-            return back()->with('message', 'fail');
+            return back()->with('message', 'Fail to find courses');
         }
     }
 

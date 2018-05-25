@@ -58,7 +58,7 @@ class AnswerController extends Controller
         DB::table('questions')
         ->where('id', $question)
         ->update(['answered'=>1]);
-        return redirect()->route('questionList',[$course, $semester])->with('message', 'success');
+        return redirect()->route('questionList',[$course, $semester])->with('message', 'Answer has been successfully submitted');
     }
 
     /**
@@ -117,7 +117,7 @@ class AnswerController extends Controller
         $answer->answer = $request->input('answer');
         $answer->save();
 
-        return redirect()->route('questionList',[$course, $semester])->with('message', 'success');
+        return redirect()->route('questionList',[$course, $semester])->with('message', 'Answer has been successfully updated');
     }
 
     /**

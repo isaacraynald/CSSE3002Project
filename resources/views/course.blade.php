@@ -8,6 +8,13 @@
     <br>
     <h1>{{$courses}}</h1>
 
+    @if (session('message'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ session('message') }}
+    </div>
+    @endif
+
     <div class="row">
 
         <!-- Semester Tab Card -->
